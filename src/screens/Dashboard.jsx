@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 const pedidos = [
     { id: 1, name: "Pedido #1", status: "pending" },
@@ -24,7 +26,9 @@ const pedidos = [
   export default function Dashboard() {
     const [filtro, setFiltro] = useState("all");
     const stats = getStats(pedidos);
-  
+    const navigate = useNavigate();
+
+    onClick={() => navigate(`/events`)}
     const filteredOrders =
       filtro === "all" ? pedidos : pedidos.filter((o) => o.status === filtro);
   
