@@ -30,7 +30,7 @@ const pedidos = [
   
     return (
       <div style={{
-        maxWidth: 400,
+        maxWidth: 500,
         margin: "2rem auto",
         fontFamily: "system-ui, sans-serif",
         background: "#fff",
@@ -43,34 +43,26 @@ const pedidos = [
           <button
             style={filtro === "all" ? activeBtn : btn}
             onClick={() => setFiltro("all")}
-          >All</button>
+          ><text style={{
+            marginRight: "1rem"}}>{stats.total}</text>All</button>
           <button
             style={filtro === "pending" ? activeBtn : btn}
             onClick={() => setFiltro("pending")}
-          >Pending</button>
+          ><text style={{
+            marginRight: "1rem"}}>{stats.pending}</text>Pending</button>
           <button
             style={filtro === "shipped" ? activeBtn : btn}
             onClick={() => setFiltro("shipped")}
-          >Shipped</button>
+          ><text style={{
+            marginRight: "1rem"}}>{stats.shipped}</text>Shipped</button>
           <button
             style={filtro === "delivered" ? activeBtn : btn}
             onClick={() => setFiltro("delivered")}
-          >Delivered</button>
+          ><text style={{
+            marginRight: "1rem"}}>{stats.delivered}</text>Delivered</button>
         </div>
   
-        <div style={{
-          fontSize: "0.95rem",
-          marginBottom: "1rem",
-          color: "#666",
-          display: "flex",
-          gap: 16,
-          justifyContent: "space-between"
-        }}>
-          <span>Total: <strong>{stats.total}</strong></span>
-          <span>Pending: <strong>{stats.pending}</strong></span>
-          <span>Shipped: <strong>{stats.shipped}</strong></span>
-          <span>Delivered: <strong>{stats.delivered}</strong></span>
-        </div>
+        
   
         <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
           {filteredOrders.length === 0 ? (
