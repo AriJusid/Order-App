@@ -3,11 +3,52 @@ import { useNavigate } from "react-router-dom";
 
 
 const pedidos = [
-    { id: 1, name: "Pedido #1", status: "pending" },
-    { id: 2, name: "Pedido #2", status: "shipped" },
-    { id: 3, name: "Pedido #3", status: "delivered" },
-    { id: 4, name: "Pedido #4", status: "pending" },
-  ];
+  {
+    id: 1,
+    cliente: "Lucía Martínez",
+    fecha: "2025-09-20",
+    status: "Pending",
+    productos: [
+      { nombre: "Pan de campo", cantidad: 2, precio: 180 },
+      { nombre: "Medialunas", cantidad: 6, precio: 60 },
+      { nombre: "Budín de limón", cantidad: 1, precio: 350 }
+    ]
+  },
+  {
+    id: 2,
+    cliente: "Carlos Gómez",
+    fecha: "2025-09-18",
+    status: "Shipped",
+    productos: [
+      { nombre: "Tarta de manzana", cantidad: 1, precio: 500 },
+      { nombre: "Facturas surtidas", cantidad: 12, precio: 720 }
+    ]
+  },
+  {
+    id: 3,
+    cliente: "Ana Rodríguez",
+    fecha: "2025-09-15",
+    status: "Delivered",
+    productos: [
+      { nombre: "Pan integral", cantidad: 1, precio: 200 },
+      { nombre: "Croissants", cantidad: 4, precio: 80 },
+      { nombre: "Brownies", cantidad: 2, precio: 250 },
+      { nombre: "Alfajores de maicena", cantidad: 6, precio: 60 }
+    ]
+  },
+  {
+    id: 4,
+    cliente: "Mariano Torres",
+    fecha: "2025-09-25",
+    status: "Pending",
+    productos: [
+      { nombre: "Churros rellenos", cantidad: 4, precio: 90 },
+      { nombre: "Pan brioche", cantidad: 1, precio: 300 },
+      { nombre: "Donas", cantidad: 3, precio: 100 }
+    ]
+  }
+];
+
   
   const filtros = {
     pending: "Pending",
@@ -28,7 +69,6 @@ const pedidos = [
     const stats = getStats(pedidos);
     const navigate = useNavigate();
 
-    onClick={() => navigate(`/events`)}
     const filteredOrders =
       filtro === "all" ? pedidos : pedidos.filter((o) => o.status === filtro);
   
@@ -64,9 +104,7 @@ const pedidos = [
             onClick={() => setFiltro("delivered")}
           ><text style={{
             marginRight: "1rem"}}>{stats.delivered}</text>Delivered</button>
-        </div>
-  
-        
+        </div>        
   
         <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
           {filteredOrders.length === 0 ? (
@@ -81,8 +119,10 @@ const pedidos = [
                 justifyContent: "space-between",
                 alignItems: "center"
               }}
+              onClick={() => navigate(`/order`, { state: { pedido } })}
+
             >
-              <span>{pedido.name}</span>
+              <span>{pedido.cliente}</span>
               <span style={{
                 fontSize: "0.87em",
                 color: "#888",
