@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Dashboard = ({pedidos}) => {
+const OrderList = ({pedidos}) => {
 
 // const filtros = {
 //     pending: "Pending",
@@ -52,21 +52,5 @@ const Dashboard = ({pedidos}) => {
         </>
     );
   }
-  
-  // Styles
-  const btn = {
-    background: "#f8f8f8",
-    color: "#444",
-    border: "none",
-    padding: "6px 14px",
-    borderRadius: 5,
-    cursor: "pointer",
-    fontSize: "1em"
-  };
-  
-  const activeBtn = {
-    ...btn,
-    background: "#222",
-    color: "#fff"
-  };
-  export default  Dashboard
+
+  export default  OrderList

@@ -1,6 +1,7 @@
 
-import OrderList from "../components/OrderList";
+import OrderFilter from "../components/OrderFilter";
 import OrderStats from "../components/OrderStats";
+import { useState } from "react";
 
 const pedidos = [
   {
@@ -59,6 +60,8 @@ const pedidos = [
       return stats;
     }
     const stats = getStats(pedidos);
+    const [filtro, setFiltro] = useState("all");
+
 
     return(
       <>
@@ -74,7 +77,7 @@ const pedidos = [
         <h2 style={{ margin: 0, marginBottom: "1.5rem", fontWeight: 500 }}>Order list</h2>
 
         <OrderStats stats={stats}></OrderStats>
-        <OrderList pedidos={pedidos}></OrderList>
+        <OrderFilter filtro = {filtro} pedidos={pedidos}></OrderFilter>
     </div>
     </>
     )
