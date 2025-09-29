@@ -1,0 +1,72 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+const Dashboard = ({pedidos}) => {
+
+// const filtros = {
+//     pending: "Pending",
+//     shipped: "Shipped",
+//     delivered: "Delivered",
+//   };
+  
+  
+    const [filtro, setFiltro] = useState("all");
+    const navigate = useNavigate();
+
+    const filteredOrders =
+      filtro === "all" ? pedidos : pedidos.filter((o) => o.status.toLocaleLowerCase() === filtro);
+
+    return (
+      <>
+               
+  
+        <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+          {filteredOrders.length === 0 ? (
+            <li style={{ color: "#aaa", textAlign: "center" }}>No orders yet</li>
+          ) : filteredOrders.map((pedido) => (
+            <li
+              key={pedido.id}
+              style={{
+                padding: "0.7rem 0",
+                borderBottom: "1px solid #eee",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center"
+              }}
+              onClick={() => navigate(`/order`, { state: { pedido } })}
+
+            >
+              <span>{pedido.cliente}</span>
+              <span style={{
+                fontSize: "0.87em",
+                color: "#888",
+                background: "#f4f4f4",
+                borderRadius: 4,
+                padding: "2px 8px"
+              }}>
+                {pedido.status}
+              </span>
+            </li>
+          ))}
+        </ul>
+        </>
+    );
+  }
+  
+  // Styles
+  const btn = {
+    background: "#f8f8f8",
+    color: "#444",
+    border: "none",
+    padding: "6px 14px",
+    borderRadius: 5,
+    cursor: "pointer",
+    fontSize: "1em"
+  };
+  
+  const activeBtn = {
+    ...btn,
+    background: "#222",
+    color: "#fff"
+  };
+  export default  Dashboard
