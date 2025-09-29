@@ -58,8 +58,8 @@ const pedidos = [
   
   function getStats(pedidos) {
     const stats = { total: pedidos.length, pending: 0, shipped: 0, delivered: 0 };
-    pedidos.forEach((o) => {
-      stats[o.status]++;
+    pedidos.forEach((p) => {
+      stats[p.status.toLowerCase()]++;
     });
     return stats;
   }
@@ -70,8 +70,7 @@ const pedidos = [
     const navigate = useNavigate();
 
     const filteredOrders =
-      filtro === "all" ? pedidos : pedidos.filter((o) => o.status === filtro);
-  
+      filtro === "all" ? pedidos : pedidos.filter((o) => o.status.toLocaleLowerCase() === filtro);
     return (
       <div style={{
         maxWidth: 500,
@@ -108,7 +107,7 @@ const pedidos = [
   
         <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
           {filteredOrders.length === 0 ? (
-            <li style={{ color: "#aaa", textAlign: "center" }}>Sin pedidos</li>
+            <li style={{ color: "#aaa", textAlign: "center" }}>No orders yet</li>
           ) : filteredOrders.map((pedido) => (
             <li
               key={pedido.id}
@@ -130,7 +129,7 @@ const pedidos = [
                 borderRadius: 4,
                 padding: "2px 8px"
               }}>
-                {filtros[pedido.status]}
+                {pedido.status}
               </span>
             </li>
           ))}
