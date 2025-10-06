@@ -35,26 +35,31 @@ export default function Dashboard({ pedidos, setPedidos }) {
       <OrderFilter filtro={filtro} pedidos={pedidos} />
     </div>
     <button
-    onClick={() => navigate("/form")}
-    style={{
-      position: "fixed",
-      bottom: "32px",
-      right: "32px",
-      background: "#646cff",
-      color: "#fff",
-      border: "none",
-      borderRadius: "50%",
-      width: "60px",
-      height: "60px",
-      fontSize: "2em",
-      boxShadow: "0 2px 8px #aaa",
-      cursor: "pointer",
-      zIndex: 1000
-    }}
-    aria-label="Crear pedido"
-  >
-    +
-  </button>
+  onClick={() => navigate("/form")}
+  style={{
+    position: "fixed",
+    bottom: "32px",
+    right: "32px",
+    background: "black",
+    color: "#fff",
+    border: "none",
+    borderRadius: "50%",
+    width: "60px",
+    height: "60px",
+    fontSize: "2em",
+    boxShadow: "0 2px 8px #aaa",
+    cursor: "pointer",
+    zIndex: 1000,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 0,
+    lineHeight: 1
+  }}
+  aria-label="Crear pedido"
+>
+  +
+</button>
   </>
   )
 }

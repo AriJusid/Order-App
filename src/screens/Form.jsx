@@ -64,7 +64,7 @@ export default function Form({ onAddPedido }) {
 
   return (
     <form onSubmit={handleSubmit} style={{
-      maxWidth: 400,
+      maxWidth: 800,
       margin: "3rem auto",
       background: "#fff",
       borderRadius: 16,
