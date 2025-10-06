@@ -108,9 +108,9 @@ export default function Form({ onAddPedido }) {
       <div style={{ width: "100%" }}>
         <label style={{ fontSize: ".97em", color: "#444", marginBottom: 4, display: "block" }}>Productos</label>
         <div style={{ display: "flex", gap: 0, marginBottom: 6 }}>
-          <span style={{ flex: 2, fontSize: ".95em", color: "#999", marginLeft: 4 }}>Nombre</span>
-          <span style={{ flex: 1, fontSize: ".95em", color: "#999", marginLeft: 12 }}>Cantidad</span>
-          <span style={{ flex: 1, fontSize: ".95em", color: "#999", marginLeft: 12 }}>Precio</span>
+          <span style={{ flex: 2, fontSize: ".95em", color: "#999", marginRight: 4, textAlign:"left" }}>Nombre</span>
+          <span style={{ flex: 1, fontSize: ".95em", color: "#999",   textAlign:"left"  }}>Cantidad</span>
+          <span style={{ flex: 1, fontSize: ".95em", color: "#999",  textAlign:"left"  }}>Precio</span>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
           {productos.map((prod, idx) => (
