@@ -50,35 +50,33 @@ const pedidos = [
   }
 ];
 
-  export default function Dashboard() {
+export default function Dashboard() {
+  function getStats(pedidos) {
+    const stats = { total: pedidos.length, pending: 0, shipped: 0, delivered: 0 };
+    pedidos.forEach((p) => {
+      stats[p.status.toLowerCase()]++;
+    });
+    return stats;
+  }
+  const stats = getStats(pedidos);
+  const [filtro, setFiltro] = useState("all");
 
-    function getStats(pedidos) {
-      const stats = { total: pedidos.length, pending: 0, shipped: 0, delivered: 0 };
-      pedidos.forEach((p) => {
-        stats[p.status.toLowerCase()]++;
-      });
-      return stats;
-    }
-    const stats = getStats(pedidos);
-    const [filtro, setFiltro] = useState("all");
-
-
-    return(
-      <>
-      <div style={{
-        maxWidth: 500,
-        margin: "2rem auto",
-        fontFamily: "system-ui, sans-serif",
-        background: "#fff",
-        borderRadius: 8,
-        boxShadow: "0 2px 8px #eee",
-        padding: "2rem"
-      }}>
-        <h2 style={{ margin: 0, marginBottom: "1.5rem", fontWeight: 500 }}>Order list</h2>
-
-        <OrderStats stats={stats}></OrderStats>
-        <OrderFilter filtro = {filtro} pedidos={pedidos}></OrderFilter>
+  return(
+    <div style={{
+      maxWidth: 500,
+      margin: "2rem auto",
+      fontFamily: "system-ui, sans-serif",
+      background: "#fff",
+      borderRadius: 8,
+      boxShadow: "0 2px 8px #eee",
+      padding: "2rem"
+    }}>
+      <h2>Order list</h2>
+      <OrderStats stats={stats} filtro={filtro} setFiltro={setFiltro} />
+      <OrderFilter filtro={filtro} pedidos={pedidos} />
     </div>
-    </>
-    )
-   }
+  )
+}
+
+
+  
