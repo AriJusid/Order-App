@@ -2,55 +2,13 @@
 import OrderFilter from "../components/OrderFilter";
 import OrderStats from "../components/OrderStats";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const pedidos = [
-  {
-    id: 1,
-    cliente: "Lucía Martínez",
-    fecha: "2025-09-20",
-    status: "Pending",
-    productos: [
-      { nombre: "Pan de campo", cantidad: 2, precio: 180 },
-      { nombre: "Medialunas", cantidad: 6, precio: 60 },
-      { nombre: "Budín de limón", cantidad: 1, precio: 350 }
-    ]
-  },
-  {
-    id: 2,
-    cliente: "Carlos Gómez",
-    fecha: "2025-09-18",
-    status: "Shipped",
-    productos: [
-      { nombre: "Tarta de manzana", cantidad: 1, precio: 500 },
-      { nombre: "Facturas surtidas", cantidad: 12, precio: 720 }
-    ]
-  },
-  {
-    id: 3,
-    cliente: "Ana Rodríguez",
-    fecha: "2025-09-15",
-    status: "Delivered",
-    productos: [
-      { nombre: "Pan integral", cantidad: 1, precio: 200 },
-      { nombre: "Croissants", cantidad: 4, precio: 80 },
-      { nombre: "Brownies", cantidad: 2, precio: 250 },
-      { nombre: "Alfajores de maicena", cantidad: 6, precio: 60 }
-    ]
-  },
-  {
-    id: 4,
-    cliente: "Mariano Torres",
-    fecha: "2025-09-25",
-    status: "Pending",
-    productos: [
-      { nombre: "Churros rellenos", cantidad: 4, precio: 90 },
-      { nombre: "Pan brioche", cantidad: 1, precio: 300 },
-      { nombre: "Donas", cantidad: 3, precio: 100 }
-    ]
-  }
-];
 
-export default function Dashboard() {
+
+export default function Dashboard({ pedidos, setPedidos }) {
+  const navigate = useNavigate();
+
   function getStats(pedidos) {
     const stats = { total: pedidos.length, pending: 0, shipped: 0, delivered: 0 };
     pedidos.forEach((p) => {
@@ -62,6 +20,7 @@ export default function Dashboard() {
   const [filtro, setFiltro] = useState("all");
 
   return(
+    <>
     <div style={{
       maxWidth: 500,
       margin: "2rem auto",
@@ -75,6 +34,28 @@ export default function Dashboard() {
       <OrderStats stats={stats} filtro={filtro} setFiltro={setFiltro} />
       <OrderFilter filtro={filtro} pedidos={pedidos} />
     </div>
+    <button
+    onClick={() => navigate("/form")}
+    style={{
+      position: "fixed",
+      bottom: "32px",
+      right: "32px",
+      background: "#646cff",
+      color: "#fff",
+      border: "none",
+      borderRadius: "50%",
+      width: "60px",
+      height: "60px",
+      fontSize: "2em",
+      boxShadow: "0 2px 8px #aaa",
+      cursor: "pointer",
+      zIndex: 1000
+    }}
+    aria-label="Crear pedido"
+  >
+    +
+  </button>
+  </>
   )
 }
 
